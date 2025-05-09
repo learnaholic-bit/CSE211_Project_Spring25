@@ -1,0 +1,9 @@
+.\main.o: main.c
+.\main.o: tm4c123gh6pm.h
+.\main.o: Bit_Utilies.h
+.\main.o: C:\Keil\ARM\ARMCC\bin\..\include\string.h
+.\main.o: LCD.h
+.\main.o: TM4C123.h
+.\main.o: UART.h
+.\main.o: GPS.h
+.\main.o: GPIO.h

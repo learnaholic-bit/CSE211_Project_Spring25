@@ -1,0 +1,12 @@
+InitPeripherals();
+printf("InitPeripherals completed\n"); /* Debug: Confirm initialization */
+InitPeripherals completed
+*** error 65: access violation at 0x4000F030 : no 'read' permission
+*** error 65: access violation at 0x4000F030 : no 'write' permission
+*** error 65: access violation at 0x4000F024 : no 'write' permission
+*** error 65: access violation at 0x4000F028 : no 'write' permission
+*** error 65: access violation at 0x4000F02C : no 'write' permission
+*** error 65: access violation at 0x4000F030 : no 'read' permission
+*** error 65: access violation at 0x4000F030 : no 'write' permission
+*** error 65: access violation at 0x4000F018 : no 'read' permission
+*** error 65: access violation at 0x4000F000 : no 'read' permission
