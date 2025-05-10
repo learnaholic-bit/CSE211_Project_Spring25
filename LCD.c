@@ -1,6 +1,8 @@
-//LCD Driver
-//just use lcd_string(unsigned char *str) to print 
-//lcd_string(unsigned char *str) to clear display
+//16x2 LCD in 8 bit mode Driver
+//just use 
+//lcd_string(unsigned char *str, int c) to print string on LCD, 0 print in first line, 1 print in second line 
+//lcd_float(float f, int c) to print float on LCD, 0 print in first line, 1 print in second line 
+//lcd_clear() to clear display
 #include "tm4c123gh6pm.h"
 #include "Bit_Utilies.h"
 #include <string.h>
