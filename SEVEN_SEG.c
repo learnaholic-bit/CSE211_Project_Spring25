@@ -4,16 +4,38 @@
 #include "Bit_Utilies.h"
 
 
-	//assume pin allignment of SEVEN_SEG
-	//A		PA2
-	//B		PA3
-	//C		PA4
-	//D		PB6
-	//E		PB7
-	//F		PD6
-	//G		PD7
-	
-	
+//assume pin allignment of SEVEN_SEG
+//A		PA2
+//B		PA3
+//C		PA4
+//D		PB6
+//E		PB7
+//F		PD6
+//G		PD7
+
+
+/**
+ * @file SEVEN_SEG.c
+ * @brief This file contains definitions and data structures for controlling a seven-segment display.
+ *
+ * The file provides arrays for encoding numbers (0-9) and letters (a-z, A-Z) into their respective
+ * seven-segment display representations. Each element in the arrays corresponds to the binary
+ * representation of the segments that need to be lit to display the character.
+ *
+ * @details
+ * - `seven_segmentArray`: Contains the binary representations for displaying digits 0-9.
+ * - `seven_segment_lowercase`: Contains the binary representations for displaying lowercase letters a-z.
+ * - `seven_segment_uppercase`: Contains the binary representations for displaying uppercase letters A-Z.
+ *
+ * @note The binary values are designed to match the segment layout of a standard seven-segment display.
+ *       Ensure that the hardware connections match the expected segment mapping.
+ *
+ * @variables
+ * - `unsigned seg1, seg2, seg3`: Variables to hold the state or value of individual seven-segment displays.
+ * - `const unsigned char seven_segmentArray[10]`: Array for digit encoding (0-9).
+ * - `const unsigned char seven_segment_lowercase[26]`: Array for lowercase letter encoding (a-z).
+ * - `const unsigned char seven_segment_uppercase[26]`: Array for uppercase letter encoding (A-Z).
+ */
 unsigned seg1, seg2, seg3;
 const unsigned char seven_segmentArray[10] = {0x3F, 0x06, 0x5B, 0x4F, 0x66, 0x6D, 0x7D, 0x27, 0x7F, 0x6F};	//0-9
 const unsigned char seven_segment_lowercase[26] = {																													//a-z
@@ -29,12 +51,14 @@ const unsigned char seven_segment_uppercase[26] = {																													
 
 
 
+/**
+ * @brief Initializes GPIO for seven-segment display output.
+ *
+ * @details
+ * Enables clocks for Ports A, B, D and sets the respective pins as outputs.
+ * Disables analog functionality and alternative functions on the pins.
+ */
 void GPIO_initSevenSegment() {
-		/*
-		GPIO_initPortA();
-		GPIO_initPortB();
-		GPIO_initPortD();
-	*/
     // Enable clocks for Ports A, B, D
     SET_BIT(SYSCTL_RCGCGPIO_R, 0); // Port A
     SET_BIT(SYSCTL_RCGCGPIO_R, 1); // Port B
@@ -71,18 +95,42 @@ void GPIO_initSevenSegment() {
 
 
 
+/**
+ * @brief Prints a character on the seven-segment display.
+ *
+ * @param[in] c character to be printed on the display.
+ *
+ * @details
+ * This function takes a character as argument and prints the corresponding
+ * character on the seven-segment display.
+ */
 void setSevenSegment(unsigned char c){
-		unsigned char pattern = 0x00;
-		if (c >= '0' && c <= '9') {
-            pattern = seven_segmentArray[c - '0'];
-        } else if (c >= 'a' && c <= 'z') {
-            pattern = seven_segment_lowercase[c - 'a'];
-        } else if (c >= 'A' && c <= 'Z') {
-            pattern = seven_segment_uppercase[c - 'A'];
-        }
+    unsigned char pattern = 0x00;
+    if (c >= '0' && c <= '9') {
+        pattern = seven_segmentArray[c - '0'];
+    } else if (c >= 'a' && c <= 'z') {
+        pattern = seven_segment_lowercase[c - 'a'];
+    } else if (c >= 'A' && c <= 'Z') {
+        pattern = seven_segment_uppercase[c - 'A'];
+    }
     GPIO_printSevenSegment(pattern);
 }
 
+/**
+ * @brief Splits a given distance into individual digits for display on a seven-segment display.
+ * 
+ * This function takes a floating-point distance value, converts it to an integer, 
+ * and extracts the individual digits from the least significant digit to the most 
+ * significant digit. The extracted digits are stored in global variables `seg1`, 
+ * `seg2`, and `seg3`.
+ * 
+ * @param distance The distance value to be split, provided as a double.
+ *                 Only the integer part of the distance is considered.
+ * 
+ * @note The function assumes that the global variables `seg1`, `seg2`, and `seg3` 
+ *       are defined elsewhere in the program. The function does not handle cases 
+ *       where the integer part of the distance exceeds three digits.
+ */
 void SplitDistance(double distance){
     int d = (int)distance;
 
