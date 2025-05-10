@@ -22,25 +22,8 @@ unsigned char GPIO_getSwitchesValue(unsigned char sw);
 
 void GPIO_setLedValue(unsigned char ledColor, unsigned char ledState);
 
-//void GPIO_PORTB_setPort(unsigned char sevenSegmentValues);
-
 void buzzerOn(void);
 
 void buzzerOff(void);
 
 void GPIO_printSevenSegment(unsigned char data);
-
-
-
-////// General Intiallize function that intiallizes all pins (0xFF) in a port DON'T USE IT!
-/*
-void GPIO_initPortA();
-
-void GPIO_initPortB();
-
-void GPIO_initPortC();
-
-void GPIO_initPortD();
-
-void GPIO_initPortE();
-*/

@@ -21,4 +21,4 @@ void UART2_Init();
 void UART2_SendChar(char c);
 void UART2_SendString(const char *str);
 char UART2_GetChar(void);
-#endif // UART
+#endif

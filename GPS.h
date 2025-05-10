@@ -35,24 +35,3 @@ void DisplaySpeed();
 void UART0_EXCEL();
 void UART2_ESP();
 #endif
-
-/*
-// GPS.h
-#ifndef GPS
-#define GPS
-
-#define PI 3.14159265358979323846
-
-// External Variables
-extern char GPS[80];
-extern char GPS_formated[12][20];
-extern float currentLong, currentLat, speed, finalLat;
-
-// Function Prototypes
-void GPS_read(void);
-void GPS_format(void);
-float ToDegree(float angle);
-float ToRad(float angle);
-float GPS_getDistance(float currentLong, float currentLat, float destLong, float destLat);
-
-#endif // GPS*/

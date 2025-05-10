@@ -1,4 +1,3 @@
-
 #include <ESP8266WiFi.h>
 #include <ESP8266WebServer.h>
 
@@ -79,6 +78,13 @@ void handleCoords() {
   server.send(200, "application/json", json);
 }
 
+/**
+ * @brief Sets up the ESP8266 as an access point and starts the web server.
+ *
+ * @details This function initializes the serial communication, connects to the
+ *          specified WiFi network, and sets up the web server to serve the
+ *          HTML page with the Leaflet map.
+ */
 void setup() {
   Serial.begin(9600); // Or match your GPS/controller baud rate
 
